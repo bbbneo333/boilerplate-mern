@@ -82,23 +82,6 @@ values using environment variables so avoid using `custom-environment-variables.
 - For scripts directly using the config from `window`, can use the config directly via `window.Config.myServiceKey`. For type safety for the same, can add the entry in
 `src/apps/frontend/types/globals.d.ts`.
 
-## Integrations
-
-This project support following integrations
-**TODO: Need to add documentation for all integrations**
-
-| Name    | Type   | Documentation                                                                                    | Configuration                                                                                                                                                                                                                                                                                                                                                                                        |
-|---------|--------|--------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| DataDog | Logger | -Create a dedicated public channel named "Error Alerts" within your MS Teams workspace. This centralized space will serve as a hub for all error-related communications.<br>-Streamline the error alert process by integrating the "Error Alerts" channel with DataDog. This integration enhances communication and incident response. <br>-Guidance on Integration<br>  https://jalantechnologies.com/uncategorized/push-notifications-from-datadog-to-microsoft-teams/<br>-For implementation, refer the following links<br>-PR: https://github.com/jalantechnologies/boilerplate-mern/pull/88<br>-docs: https://docs.datadoghq.com/logs/log_collection/nodejs/?tab=winston30 | - logger.transports = ['datadog']<br>- datadog.api_key - <DATADOG_CLIENT_TOKEN><br>- datadog.app_name - <DATADOG_CLIENT_TOKEN_NAME> <br> in this implementation these are not the datadog's api key and name, to generate these, create a client token under Organisational settings > Client token<br> refer docs under logs > getting started > client for more info |
-| Inspectlet | Analytics | https://docs.inspectlet.com/hc/en-us/articles/206355438-Installing-Inspectlet | - inspectlet.wid = Unique Inspectlet key provided by inspectlet |         
-|        |                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                      |
-
-## Deployment
-
-This project deploys on Kubernetes via GitHub actions using workflows defined in [GitHub CI](https://github.com/jalantechnologies/github-ci).
-
-For setup, consult [this](https://docs.google.com/document/d/1aPlKI6t-NsClzFMygNEn2PEXgfpI9KJEb5xERQ_WhW8/edit?usp=drive_link) document.
-
 ## E2E Testing
 
 **Pre Requirements:**

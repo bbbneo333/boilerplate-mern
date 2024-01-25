@@ -23,7 +23,7 @@
     "serve:frontend": "webpack serve --output-path dist/public --config src/apps/frontend/webpack.dev.js --hot --progress",
     "cy:open": "cypress open"
   },
-  "author": "jalantechnologies",
+  "author": "bbbneo333",
   "license": "MIT",
   "dependencies": {
     "@sendgrid/mail": "^7.6.1",
