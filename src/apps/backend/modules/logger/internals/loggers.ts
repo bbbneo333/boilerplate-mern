@@ -2,9 +2,7 @@ import { ConfigService } from '../../config';
 import { UnknownTransportError } from '../types';
 
 import ConsoleLogger from './console-logger';
-import GrafanaLokiLogger from './grafana-loki-logger';
-import PapertrailLogger from './papertrail-logger';
-import RollbarLogger from './rollbar-logger';
+import DatadogLogger from './datadog-logger';
 import Logger, { LoggerTransport } from './types';
 
 export default class Loggers {
@@ -46,20 +44,14 @@ export default class Loggers {
 
     transports.forEach((loggerTransport: string) => {
       switch (loggerTransport) {
-        case LoggerTransport.Console:
-          loggers.push(Loggers.getConsoleLogger());
-          break;
-        case LoggerTransport.Rollbar:
-          loggers.push(Loggers.getRollbarLogger());
-          break;
-        case LoggerTransport.Grafana:
-          loggers.push(Loggers.getGrafanaLokiLogger());
-          break;
-        case LoggerTransport.Papertrail:
-          loggers.push(Loggers.getPapertrailLogger());
-          break;
-        default:
-          throw new UnknownTransportError(loggerTransport);
+      case LoggerTransport.Console:
+        loggers.push(Loggers.getConsoleLogger());
+        break;
+      case LoggerTransport.Datadog:
+        loggers.push(Loggers.getDatadogLogger());
+        break;
+      default:
+        throw new UnknownTransportError(loggerTransport);
       }
     });
 
@@ -70,15 +62,7 @@ export default class Loggers {
     return new ConsoleLogger();
   }
 
-  private static getRollbarLogger(): RollbarLogger {
-    return new RollbarLogger();
-  }
-
-  private static getGrafanaLokiLogger(): GrafanaLokiLogger {
-    return new GrafanaLokiLogger();
-  }
-
-  private static getPapertrailLogger(): PapertrailLogger {
-    return new PapertrailLogger();
+  private static getDatadogLogger(): DatadogLogger {
+    return new DatadogLogger();
   }
 }
